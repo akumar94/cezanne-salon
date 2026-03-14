@@ -6,10 +6,14 @@ Benchmarking Flux.1 against Cézanne's three periods.
 
 ## Reference Paintings
 
-| The Murder | The Card Players | Fruit Bowl, Glass and Apples | The Forest |
-|:---:|:---:|:---:|:---:|
-| ![The Murder](images/reference/Paul_Cézanne_-_The_Murder.jpg) | ![The Card Players](images/reference/Les_Joueurs_de_cartes%2C_par_Paul_Cézanne.jpg) | ![Fruit Bowl, Glass and Apples](images/reference/Fruit%20Bowl%2C%20Glass%20and%20Apples.jpg) | ![The Forest](images/reference/Cezanne_-_The_Forest.jpg) |
-| Early | Middle | Middle | Late |
+<table>
+<tr>
+<td align="center" width="25%"><img src="images/reference/Paul_Cézanne_-_The_Murder.jpg"/><br/><b>The Murder</b><br/><i>Early</i></td>
+<td align="center" width="25%"><img src="images/reference/Les_Joueurs_de_cartes%2C_par_Paul_Cézanne.jpg"/><br/><b>The Card Players</b><br/><i>Middle</i></td>
+<td align="center" width="25%"><img src="images/reference/Fruit%20Bowl%2C%20Glass%20and%20Apples.jpg"/><br/><b>Fruit Bowl, Glass and Apples</b><br/><i>Middle</i></td>
+<td align="center" width="25%"><img src="images/reference/Cezanne_-_The_Forest.jpg"/><br/><b>The Forest</b><br/><i>Late</i></td>
+</tr>
+</table>
 
 
 ---
