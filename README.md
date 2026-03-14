@@ -65,7 +65,7 @@ Flux.1 can generate violent figurative scenes. It cannot generate Cézanne's vio
 
 Across five runs with progressively refined prompts, the model consistently defaulted to cinematic, photorealistic rendering. Run 1 produced a Neoclassical wrestling scene. Runs 2 through 4, with increasingly specific negative prompting against Baroque and photographic styles, produced what can best be described as a Victorian film still. Run 5, which led entirely with medium description rather than subject description, showed marginal improvement in painterly texture but did not break the underlying pattern.
 
- Flux's training distribution for clothed figurative violence is overwhelmingly photographic and cinematic. **Cézanne's treatment of this subject, crude and anti-academic by design, is essentially absent from that distribution. The model knows what a murder looks like. It does not know what Cézanne's decision to paint a murder  looks like. 
+ Flux's training distribution for clothed figurative violence is overwhelmingly photographic and cinematic. The model knows what a murder looks like. It does not know what Cézanne's decision to paint a murder crudely, emotionally, and against academic convention looks like.
 ---**
 
 ## Status
