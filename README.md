@@ -6,7 +6,7 @@ Benchmarking Flux.1 against Cézanne's three periods.
 
 ## Reference Paintings
 
-| Early (1867) | Middle (1892) | Middle (1880) | Late (1894) |
+| Early (1867) | Middle (1892) | Middle (1880) | Late (1904) |
 |:---:|:---:|:---:|:---:|
 | ![The Murder](images/reference/Paul_Cézanne_-_The_Murder_-_Google_Art_Project.jpg) | ![The Card Players](images/reference/Les_Joueurs_de_cartes%2C_par_Paul_Cézanne.jpg) | ![Fruit Bowl](images/reference/Fruit%20Bowl%2C%20Glass%20and%20Apples.jpg) | ![The Forest](images/reference/Cezanne_-_The_Forest.jpg) |
 | The Murder | The Card Players | Fruit Bowl, Glass and Apples | The Forest |
@@ -27,8 +27,8 @@ Cézanne's career moves across three philosophically distinct phases. His Early 
 |--------|----------|------|-----|
 | Early (1859-1875) | The Murder | 1867 | Dark romantic, violent, unambiguously Early |
 | Middle (1875-1890) | The Card Players | 1892 | Geometric figures, muted palette, peak Cézanne the theorist |
-| Middle (1875-1890) | Fruit Bowl, Glass and Apples | 1879 | Intentional geometric distortion, proto-Cubism in a still life |
-| Late (1890-1906) | The Forest | 1894 | Near-total abstraction, flattened planes, maximum stress test |
+| Middle (1875-1890) | Fruit Bowl, Glass and Apples | 1880 | Intentional geometric distortion, proto-Cubism in a still life |
+| Late (1890-1906) | The Forest | 1904 | Near-total abstraction, flattened planes, maximum stress test |
 
 The Middle period carries two paintings. Still life and figure painting require different model competencies, and the Middle period is Cézanne's most theoretically rich phase.
 
