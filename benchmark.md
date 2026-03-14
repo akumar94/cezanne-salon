@@ -7,7 +7,7 @@
 
 ## Thesis
 
-A painting encodes decisions - every brushstroke is intentional. A photo is just light. Getting a model to understand the intentionality of a Cézanne period is a fundamentally harder task than generating a realistic apple. This benchmark tests whether Flux.1 can distinguish between three philosophically distinct phases of Cézanne's career - not just visually, but structurally.
+A painting encodes decisions, every brushstroke is intentional. A photo is just light. Getting a model to understand the intentionality of a Cézanne period is a fundamentally harder task than generating a realistic apple. This benchmark tests whether Flux.1 can distinguish between three philosophically distinct phases of Cézanne's career, not just visually, but structurally.
 
 ---
 
