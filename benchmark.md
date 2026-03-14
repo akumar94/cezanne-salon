@@ -48,12 +48,6 @@ A painting encodes decisions, every brushstroke is intentional. A photo is just 
 
 ### Painting 1: The Murder (Early Period, 1867)
 
-**Positive Prompt:**
-> TBD
-
-**Negative Prompt:**
-> TBD
-
 ---
 
 #### Run 1
@@ -265,13 +259,7 @@ A painting encodes decisions. A photo is just light. Getting a model to understa
 
 *Results for The Card Players, Fruit Bowl, Glass and Apples, and The Forest to be added in subsequent sessions.*
 
-### A Note on CycleGAN
 
-Jun-Yan Zhu's CycleGAN (2017) produces Cezanne-style outputs that are visibly more convincing than anything Flux.1 generated across these five runs. The reason is structural, not a matter of prompt quality. CycleGAN trains a dedicated transformation network directly on real Cezanne paintings as the target domain. It learns what makes a Cezanne a Cezanne from the actual pixels of his work. Flux absorbs those same paintings diluted across billions of training images, with no targeted attention to his specific visual language.
-
-This distinction matters for the benchmark. Flux is not being asked to transform an image into a Cezanne. It is being asked to generate one from a text description alone, relying entirely on whatever compressed representation of his work survived the training process. CycleGAN is a scalpel. Flux is a sledgehammer. The fact that Flux still struggles with Early period figurative work eight years after CycleGAN solved a related problem is itself a finding worth noting.
-
----
 
 ## Methodology Notes
 
