@@ -8,7 +8,7 @@ Benchmarking Flux.1 against Cézanne's three periods.
 
 | Early (1867) | Middle (1892) | Middle (1880) | Late (1894) |
 |:---:|:---:|:---:|:---:|
-| ![The Murder](images/reference/Paul_Cézanne_-_The_Murder_-_Google_Art_Project.jpg) | ![The Card Players](images/reference/Les_Joueurs_de_cartes,_par_Paul_Cézanne.jpg) | ![Fruit Bowl](images/reference/Fruit%20Bowl%2C%20Glass%20and%20Apples.jpg) | ![The Forest](images/reference/Cezanne_-_The_Forest.jpg) |
+| ![The Murder](images/reference/Paul_Cézanne_-_The_Murder_-_Google_Art_Project.jpg) | ![The Card Players](images/reference/Les_Joueurs_de_cartes%2C_par_Paul_Cézanne.jpg) | ![Fruit Bowl](images/reference/Fruit%20Bowl%2C%20Glass%20and%20Apples.jpg) | ![The Forest](images/reference/Cezanne_-_The_Forest.jpg) |
 | The Murder | The Card Players | Fruit Bowl, Glass and Apples | The Forest |
 
 ---
