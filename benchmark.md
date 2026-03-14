@@ -13,12 +13,12 @@ A painting encodes decisions, every brushstroke is intentional. A photo is just 
 
 ## Paintings Selected
 
-| Period | Painting | Year | Why |
+| Period | Painting | Year | 
 |--------|----------|------|-----|
-| Early (1859–1875) | The Murder | Dark romantic, violent, Delacroix influence - unambiguously Early |
-| Middle (1875–1890) | The Card Players | Geometric figure composition, muted palette - peak Cézanne the theorist |
-| Middle (1875–1890) | Fruit Bowl, Glass and Apples | Still life with intentional geometric distortion - proto-Cubism hiding in plain sight |
-| Late (1890–1906) | The Forest | Near-total abstraction, flattened planes, dissolved edges - maximum stress test |
+| Early (1859–1875) | The Murder | Dark romantic, violent, Delacroix influence: unambiguously Early 
+| Middle (1875–1890) | The Card Players | Geometric figure composition, muted palette: peak Cézanne the theorist 
+| Middle (1875–1890) | Fruit Bowl, Glass and Apples | Still life with intentional geometric distortion: proto-Cubism hiding in plain sight 
+| Late (1890–1906) | The Forest | Near-total abstraction, flattened planes, dissolved edges: maximum stress test 
 
 ---
 
