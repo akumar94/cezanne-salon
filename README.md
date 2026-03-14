@@ -8,14 +8,14 @@ Benchmarking Flux.1 against Cézanne's three periods.
 
 | Early (1867) | Middle (1892) | Middle (1880) | Late (1904) |
 |:---:|:---:|:---:|:---:|
-| ![The Murder](images/reference/Paul_Cézanne_-_The_Murder_-_Google_Art_Project.jpg) | ![The Card Players](images/reference/Les_Joueurs_de_cartes%2C_par_Paul_Cézanne.jpg) | ![Fruit Bowl](images/reference/Fruit%20Bowl%2C%20Glass%20and%20Apples.jpg) | ![The Forest](images/reference/Cezanne_-_The_Forest.jpg) |
+| ![The Murder](images/reference/the_murder_1867.jpg) | ![The Card Players](images/reference/the_card_players_1892.jpg) | ![Fruit Bowl, Glass and Apples](images/reference/fruit_bowl_1880.jpg) | ![The Forest](images/reference/the_forest_1904.jpg) |
 | The Murder | The Card Players | Fruit Bowl, Glass and Apples | The Forest |
 
 ---
 
 ## Thesis
 
-Most image generation benchmarks test against photographs, product images, or generic creative prompts. None of them test whether a model understands what makes a Cézanne from 1867 structurally different from one painted in 1894. This benchmark does.
+Most image generation benchmarks test against photographs, product images, or generic creative prompts. None of them test whether a model understands what makes a Cézanne from 1867 structurally different from one painted in 1904. This benchmark does.
 
 Cézanne's career moves across three philosophically distinct phases. His Early period is dark, emotional, and influenced by the Romantic tradition. His Middle period is structured, geometric, and theoretically rigorous. His Late period abandons three-dimensional space almost entirely, flattening planes into a proto-Cubist perceptual experiment. A model that genuinely understands his work should fail differently across these three periods. Tracking that failure is the point.
 
