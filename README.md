@@ -22,7 +22,7 @@ Benchmarking Flux.1 against Cézanne's three periods.
 
 Most image generation benchmarks test against photographs, product images, or generic creative prompts. None of them test whether a model understands what makes a Cézanne from 1867 structurally different from one painted in 1904. This benchmark does.
 
-Cézanne's career moves across three philosophically distinct phases. His Early period is dark, emotional, and influenced by the Romantic tradition. His Middle period is structured, geometric, and theoretically rigorous. His Late period abandons three-dimensional space almost entirely, flattening planes into a proto-Cubist perceptual experiment. A model that genuinely understands his work should fail differently across these three periods. Tracking that failure is the point.
+Cézanne's career moves across three philosophically distinct phases. His Early period is dark, emotional, and influenced by the Romantic tradition. His Middle period is structured, geometric, and theoretically rigorous. His Late period abandons three-dimensional space almost entirely, flattening planes into a proto-Cubist perceptual experiment. A model that genuinely understands his work should fail differently across these three periods. 
 
 ---
 
