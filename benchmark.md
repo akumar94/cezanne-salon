@@ -493,7 +493,6 @@ The deeper finding is structural. Flux can replicate what a Cézanne painting *c
 
 - FID score skipped - requires 50+ images per period, overkill for this project
 - CLIP score possible but noisy for fine art (trained on web images, not paintings)
-- Cohen's Kappa used for inter-rater reliability with two raters (human + AI)
 - Resolution kept at 512x512 for speed; quality sufficient for rubric scoring
 - Seeds verified via PNG metadata (`strings <file>.png | grep '"seed"'`) rather than ComfyUI UI display, which shows the next-queued seed under `randomize` mode rather than the current seed
 
