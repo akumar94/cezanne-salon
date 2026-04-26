@@ -1,7 +1,7 @@
 # Cézanne Period Benchmark
 **Model:** Flux.1-dev Q4_K_S (GGUF)  
 **Platform:** ComfyUI, M4 Mac 24GB  
-**Sampler:** Euler | **CFG:** 1.0 | **Seed:** randomized per run | **Steps:** 10 | **Resolution:** 512x512
+**Sampler:** Euler | **CFG:** 1.0 (baseline), 2.0 (post-discovery, Card Players Run 3+) | **Seed:** randomized per run | **Steps:** 10 | **Resolution:** 512x512
 
 ---
 
@@ -38,6 +38,12 @@ A painting encodes decisions, every brushstroke is intentional. A photo is just 
 | **Period attribution** | Would a blind rater place this in the correct period? | - |
 | **Mood/atmosphere** | Does the emotional register match? | - |
 | **Distinctive feature presence** | Is the most period-specific quality present? | - |
+
+---
+
+## Methodology Note: ComfyUI Seed Logging
+
+In ComfyUI's KSampler node with `control_after_generate: randomize`, the seed displayed in the UI after a run completes is the seed queued for the *next* generation, not the seed used for the current one. The accurate seed for any given output must be read from the PNG metadata after generation (`strings <file>.png | grep '"seed"'`) or from ComfyUI's history panel, not from the UI display at queue time. Seeds in this benchmark were corrected via PNG metadata audit; original Murder seeds for Runs 3-5 reflected the off-by-one error before correction.
 
 ---
 
@@ -120,7 +126,7 @@ A painting encodes decisions, every brushstroke is intentional. A photo is just 
 ---
 
 #### Run 3
-**Seed:** 565278852310445
+**Seed:** 744762202065314
 **Steps:** 10 | **Resolution:** 512x512 | **CFG:** 1.0
 
 **Positive Prompt:**
@@ -159,8 +165,10 @@ A painting encodes decisions, every brushstroke is intentional. A photo is just 
 - Victim described as "nearly invisible merged with dark ground"
 - Added to negatives: portrait, indoor scene, bright background, standing poses, studio lighting, three equally visible figures, upright standing figures, dark robe
 
+---
+
 #### Run 4
-**Seed:** 299643117394964
+**Seed:** 690343881524155
 **Steps:** 10 | **Resolution:** 512x512 | **CFG:** 1.0
 
 **Positive Prompt:**
@@ -198,7 +206,7 @@ A painting encodes decisions, every brushstroke is intentional. A photo is just 
 ---
 
 #### Run 5
-**Seed:** 990040829368474
+**Seed:** 299643117394964
 **Steps:** 10 | **Resolution:** 512x512 | **CFG:** 1.0
 
 **Positive Prompt:**
@@ -230,7 +238,214 @@ A painting encodes decisions, every brushstroke is intentional. A photo is just 
 ---
 
 ### Painting 2: The Card Players (Middle Period, 1892)
-*[TBD - runs to be added]*
+
+---
+
+#### Run 1
+**Seed:** 990040829368474
+**Steps:** 10 | **Resolution:** 512x512 | **CFG:** 1.0
+
+**Positive Prompt:**
+> Paul Cézanne 1892 oil painting, muted earth tone palette, ochre and burnt sienna and dusty blue, structured geometric brushwork, visible directional strokes building planes, matte unvarnished surface, two peasant men seated facing each other at wooden table in profile, playing cards, both wearing heavy work clothes, one in blue smock, one in brown jacket with yellow-tan hat, downcast eyes focused on cards, still wine bottle standing upright between them on table, warm brown tavern interior, simple plain background wall, quiet contemplative mood, no movement, balanced symmetrical composition, Post-Impressionist, thick paint application, blocky simplified forms, faces rendered as planes not detail
+
+**Negative Prompt:**
+> photograph, photorealistic, hyperrealistic, smooth skin, detailed faces, sharp focus, Renaissance, Baroque, neoclassical, academic painting, studio lighting, cinematic, film still, Hollywood, digital art, 3D render, illustration, anime, cartoon, polished, decorative, expressive gestures, dramatic lighting, action, movement, multiple figures crowded, standing figures, ornate background, fine detail in faces
+
+| Dimension | Score | Notes |
+|-----------|-------------|-------|
+| Palette accuracy | 3 | Ochre background and blue/brown clothing in correct family, but warmer and more saturated than actual painting |
+| Brushwork visibility | 1 | Surface is smooth and airbrushed, zero impasto, no directional strokes visible |
+| Planarity | 2 | Full 3D modeling on figures - rounded shoulders, dimensional hat brims, atmospheric shadow on back wall |
+| Compositional structure | 4 | Genuinely close to Barnes/Met composition - two figures in profile, table between them, bottle centered, cards visible |
+| Edge quality | 2 | Edges too soft and photographic, lacking Cézanne's structured edge definition |
+
+**Qualitative Notes:**
+- Two-figure composition correctly pulled (vs. three or four figure versions) ✅
+- Bottle centered on table between figures ✅
+- Profile poses with downcast eyes, contemplative mood ✅
+- Quietness landed - no narrative animation, no mid-action energy ✅
+- Left figure missing pipe ❌
+- Cards sitting on table, not held in hands ❌
+- Faces rendered photorealistically with individual features - opposite of Cézanne's planar mask-like faces ❌
+- Hats too detailed and costume-specific - reads as Western/frontier rather than French peasant ❌
+- Output reads as "two old prospectors" / Deadwood-adjacent rather than French tavern scene
+- **Verdict:** Composition and palette caught the reference. Technique (brushwork, planarity, edges) completely missed. Same Murder failure mode - Flux knows what Cézanne paintings look like as reference images, not how Cézanne painted.
+
+**Prompt Changes for Run 2:**
+- Added: "smoking a long white clay pipe in his mouth", "both holding playing cards in their hands"
+- Added: "French peasant" (counter Western pull)
+- Added: "flat planar rendering", "faces simplified into geometric planes not photorealistic"
+- Added to negatives: "Western cowboy, American frontier, prospector, Deadwood, gunslinger, saloon, three-dimensional modeling, rounded forms, individual facial features, pores, cards on table not in hands"
+
+---
+
+#### Run 2
+**Seed:** 131978995726338
+**Steps:** 10 | **Resolution:** 512x512 | **CFG:** 1.0
+
+**Positive Prompt:**
+> Paul Cézanne 1892 oil painting, muted earth tone palette, ochre and burnt sienna and dusty blue, structured geometric brushwork visible directional strokes building planes, matte unvarnished canvas surface, thick visible impasto, two French peasant men seated facing each other in profile at small wooden table, both holding playing cards in their hands, left man wearing blue smock smoking a long white clay pipe in his mouth, right man wearing brown jacket and yellow-tan hat, both men downcast eyes focused on their cards, dark wine bottle standing upright on table between them, warm ochre wall behind them, plain undetailed background, quiet contemplative still mood, Post-Impressionist painting technique, faces simplified into geometric planes not photorealistic, blocky simplified forms, flat planar rendering, painterly not photographic
+
+**Negative Prompt:**
+> photograph, photorealistic, hyperrealistic, smooth skin, detailed faces, individual facial features, pores, sharp focus, Renaissance, Baroque, neoclassical, academic painting, studio lighting, cinematic, film still, Hollywood, digital art, 3D render, illustration, anime, cartoon, polished, decorative, dramatic lighting, action, movement, Western cowboy, American frontier, prospector, Deadwood, gunslinger, saloon, three-dimensional modeling, rounded forms, atmospheric perspective, cards on table not in hands
+
+| Dimension | Score | Notes |
+|-----------|-------------|-------|
+| Palette accuracy | 2 | Background saturation cranked up to mustard yellow - lost the muted earthy quality, more Van Gogh than Cézanne |
+| Brushwork visibility | 1 | No movement - surface still smooth and airbrushed, zero impasto despite explicit prompting |
+| Planarity | 2 | Background flatter than Run 1 (accidental win), but figures remain fully 3D with heavy fabric modeling and dimensional forms |
+| Compositional structure | 4 | Still strong - pipe added correctly, two-figure composition holds, bottle centered |
+| Edge quality | 2 | No improvement - edges still soft and photographic |
+
+**Qualitative Notes:**
+- Pipe successfully added - decent clay pipe shape, not over-detailed ✅
+- Left figure's grey cap closer to French peasant headwear ✅
+- Background flatter and more painterly (accidental planarity win on background only) ✅
+- Cowboy energy partially reduced - right figure's hat less Deadwood, more generic ✅
+- Cards still on table, not in hands ❌ - explicit prompt ignored, appears to be model limitation
+- Faces still photorealistic - beards rendered hair-by-hair, full dimensional modeling ❌
+- Figures still fully 3D - heavy fabric folds on right figure's coat, rounded shoulders ❌
+- Wine bottle more photorealistic than Run 1 - visible glass highlight
+- Background saturation increased - lost muted quality
+- **Verdict:** Flux responds to additive prompt changes (add pipe → get pipe) but resists transformative ones (make faces planar → still photorealistic). Suggests Flux's painterly understanding operates at the level of iconography (what objects appear) rather than technique (how paint is applied).
+
+**Model Limitation Flagged:**
+- "Cards in hands" prompt consistently ignored across runs. Flux appears to default to cards-on-table for this composition regardless of explicit instruction. Likely reflects training data distribution where Card Players reference images overwhelmingly show cards on table. Will not continue fighting this in subsequent runs.
+
+**Prompt Changes for Run 3:**
+- CFG 1.0 → 2.0 (test whether default CFG is underweighting technique prompts)
+- Restructured prompt with more concrete material/process language
+- Added: "broken color technique", "small unblended patches of distinct color", "visible canvas weave", "thick palette knife strokes"
+- Added: specific hat descriptions ("tall dark bowler", "soft wide-brimmed tan hat")
+- Added: "ochre orange tablecloth with visible folds"
+- Removed: "Post-Impressionist" (too broad, possibly pulling Van Gogh saturation)
+- Removed: "in profile" (OG is 3/4 profile, not pure silhouette)
+- Removed: "cards in hands" prompts (model limitation, stop fighting)
+
+---
+
+#### Run 3
+**Seed:** 943861662171654
+**Steps:** 10 | **Resolution:** 512x512 | **CFG:** 2.0
+
+**Positive Prompt:**
+> Paul Cézanne 1892 oil painting The Card Players, broken color technique, small unblended patches of distinct color, visible canvas weave, thick palette knife strokes, muted earth tone palette, warm muddy brown and burnt sienna and ochre, two French peasant men seated at small table with heavy ochre orange tablecloth with visible folds, both heads tilted down toward cards on table, left man wearing tall dark bowler hat smoking long white clay pipe, dark jacket, right man wearing soft wide-brimmed tan hat and pale yellow-green jacket, dark wine bottle standing on tablecloth between them, dense painterly background of broken brushwork in mixed browns and greens, structural vertical elements behind figures, faces simplified into geometric planes, blocky simplified forms, flat planar rendering
+
+**Negative Prompt:**
+> photograph, photorealistic, hyperrealistic, smooth skin, detailed faces, individual facial features, pores, sharp focus, blended gradients, smooth shading, Renaissance, Baroque, neoclassical, academic painting, cinematic, film still, digital art, 3D render, illustration, anime, cartoon, polished, decorative, Western cowboy, prospector, three-dimensional modeling, rounded forms, atmospheric perspective, plain background, empty background, yellow saturated background, profile silhouette
+
+| Dimension | Score | Notes |
+|-----------|-------------|-------|
+| Palette accuracy | 4 | Tablecloth ochre/orange correct, figures in correct earth-tone family, but background went unexpected blue/green/peach color fields |
+| Brushwork visibility | 3 | Major improvement - visible painterly brushwork across tablecloth, jackets, figures. First run with real surface texture. Still not impasto-thick |
+| Planarity | 2 | Faces moved from photorealistic to painterly (category change), but figure bodies still fully 3D modeled with fabric folds and dimensional shoulders |
+| Compositional structure | 4 | Hat specifications landed (tall bowler + wide-brimmed tan), pipe correct, tablecloth with folds correct, bottle centered |
+| Edge quality | 3 | Edges now painterly rather than photographic, some softness appropriate to medium, slight CFG-induced sharpening artifacts |
+
+**Qualitative Notes:**
+- Faces rendered painterly for first time across all runs - simplified features, visible brushwork, no pore-level detail ✅
+- Surface texture present across entire canvas - first run with visible paint application ✅
+- Tablecloth correct: ochre orange with visible folds ✅
+- Hat specifications landed correctly: tall dark bowler (left), wide-brimmed tan (right) ✅
+- Pale yellow-green jacket on right figure landed ✅
+- Bottle more painterly, less photorealistic glass highlight ✅
+- Background went color-field abstract (Rothko-adjacent vertical blue/green/peach planes) ❌
+- "Structural vertical elements behind figures" prompt language pulled color-field interpretation rather than tavern interior
+- Removed "plain background" guardrail without sufficient replacement specification - Flux filled prompt gap with training data prior
+- Figure bodies still fully 3D - fabric folds, rounded shoulders, dimensional modeling ❌
+- Broken color technique not fully landed - surfaces painterly but still mostly blended, not Cézanne's distinct-patches quality ❌
+- Minor CFG 2.0 artifacts: oversharpening around figures, fake signature scrawl bottom right
+- **Verdict:** First run with category-level breakthrough. Flux moved off photorealistic default for the first time across both Murder and Card Players benchmarks.
+
+**Key Finding (CFG):**
+CFG 1.0 (Flux default) appears to underweight painterly technique prompts to the point where the model ignores them and defaults to photorealistic rendering regardless of prompt content. CFG 2.0 produces a category-level shift in how the model engages with technique language. However, the model still has strong priors it pulls toward when prompt regions are underspecified (e.g., background went color-field abstract when "plain wall" guardrail was removed without specific replacement).
+
+Methodological implication: benchmarking Flux's painterly capability at CFG 1.0 may underestimate the model's ceiling. Future Cézanne benchmark runs across all periods should test at minimum CFG 1.0 and 2.0 to separate "model can't" from "model won't at default settings."
+
+**Prompt Changes for Run 4:**
+- Keep CFG 2.0
+- Fix background specification: replace "structural vertical elements behind figures" (pulled color-field interpretation) with concrete tavern interior language
+- Push harder on broken color: more specific patch language, possibly add color-mosaic descriptors
+- Push harder on figure planarity: target body modeling specifically, not just faces
+
+---
+
+#### Run 4
+**Seed:** 1031563174118991
+**Steps:** 10 | **Resolution:** 512x512 | **CFG:** 2.0
+
+**Positive Prompt:**
+> Paul Cézanne 1892 oil painting The Card Players, broken color technique, mosaic of small distinct unblended color patches sitting next to each other, visible canvas weave, thick palette knife strokes, muted earth tone palette, warm muddy brown and burnt sienna and ochre, two French peasant men seated at small table with heavy ochre orange tablecloth with visible folds, both heads tilted down toward cards on table, left man wearing tall dark bowler hat smoking long white clay pipe, dark jacket simplified into flat geometric color blocks, right man wearing soft wide-brimmed tan hat and pale yellow-green jacket simplified into flat geometric color blocks, dark wine bottle standing on tablecloth between them, dimly lit rustic French tavern interior, dark wooden wall paneling behind figures, chaotic painterly background of broken brushwork in mixed dark browns olive greens and ochres, faces and bodies both rendered as flat geometric planes, blocky simplified forms, no fabric folds, no rounded shoulders, flat planar rendering throughout
+
+**Negative Prompt:**
+> photograph, photorealistic, hyperrealistic, smooth skin, detailed faces, individual facial features, pores, sharp focus, blended gradients, smooth shading, gradient shading, Renaissance, Baroque, neoclassical, academic painting, cinematic, film still, digital art, 3D render, illustration, anime, cartoon, polished, decorative, Western cowboy, prospector, three-dimensional modeling, rounded forms, fabric folds, dimensional shoulders, atmospheric perspective, color field abstract, Rothko, vertical color planes, geometric abstraction, plain background, empty background, modern abstract art
+
+| Dimension | Score | Notes |
+|-----------|-------------|-------|
+| Palette accuracy | 4 | Best palette across all runs - dark interior, ochre/orange tablecloth, muted figures. Background went cool green/teal instead of warm brown - directional miss but closer than Run 3 |
+| Brushwork visibility | 3 | Similar to Run 3 - painterly surface texture present, no impasto, broken color still not landing |
+| Planarity | 2 | No improvement on bodies despite explicit "flat geometric color blocks" + "no fabric folds" + "no rounded shoulders" pressure. Faces possibly backslid from Run 3 - more individualized features, dimensional rendering |
+| Compositional structure | 4 | Strong overall - hats correct, tablecloth correct, two figures with downcast eyes, bottle centered. Pipe is comically oversized (Flux over-indexed on "long") |
+| Edge quality | 3 | Painterly edges held, similar to Run 3, slight CFG sharpening artifacts |
+
+**Qualitative Notes:**
+- Rothko background eliminated ✅ - tavern interior anchor language ("rustic French tavern interior, dark wooden wall paneling") successfully replaced color-field abstraction
+- Hat specifications held: tall dark bowler (left), wide-brimmed tan (right) ✅
+- Tablecloth landed correctly: ochre orange with folds ✅
+- Pale yellow jacket on right figure landed, closer to OG than Run 3's brighter green ✅
+- Background went cool green/teal instead of warm muddy brown ❌ - "olive greens" in prompt pulled too hard, OG is warm reddish-brown with no green
+- Pipe oversized to comedic degree ❌ - "long white clay pipe" prompt over-indexed on length
+- Bodies still fully 3D ❌ - explicit "flat geometric color blocks" + "no fabric folds" + "no rounded shoulders" pressure failed to override Flux's representational prior on human bodies. Right figure shows clear fabric folds, dimensional shoulders
+- Faces backslid from Run 3 - individual features returned, dimensional modeling on right figure's beard ❌
+- Broken color technique still not landing - "mosaic of patches" language did not translate to visible patch-work in output ❌
+- Some CFG 2.0 artifacts: slight oversharpening, mild oversaturation
+- **Verdict:** Anchoring prompts work (background, tablecloth, hats), but prompts asking Flux to violate representational priors about human bodies do not, even at CFG 2.0 with explicit negatives.
+
+**Key Finding (Representational Priors):**
+Flux's prior on rendering human bodies as 3D dimensional objects appears to be effectively non-overridable through prompting alone. Across Runs 2, 3, and 4 — with progressively more aggressive planar language and explicit negatives — figure bodies continued to render with fabric folds, rounded shoulders, and full dimensional modeling. This suggests a possible asymmetry in what Flux can be steered toward: it can render an oversized pipe, an ochre tablecloth, or a tavern interior because these are object-level descriptions matching its training distribution, but it resists rendering humans in non-conventional ways because doing so requires overriding the dominant pattern in its human-figure training data.
+
+This is potentially the central finding of the Card Players benchmark: **Flux can replicate Cézanne's iconography (objects, palette, composition) but not his fundamental challenge to representational seeing (planar reduction of three-dimensional form). The latter is what makes a Cézanne a Cézanne.**
+
+**Prompt Changes for Run 5:**
+- Hold CFG at 2.0 (save 2.5/3.0 experiments for still life painting)
+- Background: drop "olive greens" entirely, push warm reddish-brown harder, add concrete material language ("warm reddish-brown wooden wall paneling, hanging dark drapery"), add to negatives: "green walls, teal, cool tones in background, dark green"
+- Pipe: "long" → "small white clay pipe", add "oversized pipe, large pipe" to negatives
+- Faces: restore Run 3 language ("faces simplified into geometric planes") rather than Run 4's combined face+body planar prompt
+- Bodies: switch from geometric description to material/process language ("thick paint applied in flat slabs," "bodies built from broad palette knife strokes")
+- Broken color: more concrete final attempt ("small visible square brushstrokes in distinct colors, paint not blended together")
+
+---
+
+#### Run 5
+**Seed:** 1090061710567620
+**Steps:** 10 | **Resolution:** 512x512 | **CFG:** 2.0
+
+**Positive Prompt:**
+> Paul Cézanne 1892 oil painting The Card Players, thick paint applied in flat slabs, small visible square brushstrokes in distinct colors paint not blended together, bodies built from broad palette knife strokes, visible canvas weave, muted earth tone palette, warm muddy brown and burnt sienna and ochre, two French peasant men seated at small table with heavy ochre orange tablecloth with visible folds, both heads tilted down toward cards on table, left man wearing tall dark bowler hat smoking small white clay pipe, dark jacket, right man wearing soft wide-brimmed tan hat and pale yellow-green jacket, dark wine bottle standing on tablecloth between them, dimly lit rustic French tavern interior, warm reddish-brown wooden wall paneling behind figures, hanging dark drapery, dense painterly background of broken brushwork in warm browns and burnt sienna and ochre, faces simplified into geometric planes, blocky simplified forms, flat planar rendering
+
+**Negative Prompt:**
+> photograph, photorealistic, hyperrealistic, smooth skin, detailed faces, individual facial features, pores, sharp focus, blended gradients, smooth shading, gradient shading, Renaissance, Baroque, neoclassical, academic painting, cinematic, film still, digital art, 3D render, illustration, anime, cartoon, polished, decorative, Western cowboy, prospector, three-dimensional modeling, rounded forms, fabric folds, dimensional shoulders, atmospheric perspective, color field abstract, Rothko, vertical color planes, geometric abstraction, plain background, empty background, modern abstract art, green walls, teal, cool tones in background, dark green, oversized pipe, large pipe
+
+| Dimension | Score | Notes |
+|-----------|-------------|-------|
+| Palette accuracy | 4 | Best background palette across all runs - warm reddish-brown wall paneling closest to OG's tonal family. Tablecloth slightly oversaturated, hat colors slightly off (right hat reading too white) |
+| Brushwork visibility | 3 | Consistent with Runs 3-4 - painterly surface texture, no impasto, broken color technique did not land despite most concrete prompt attempt yet |
+| Planarity | 2 | Faces marginally improved over Run 4 (closer to Run 3 quality after restoring face-specific language). Bodies unchanged - full fabric folds, dimensional shoulders, rounded forms persist |
+| Compositional structure | 5 | Strongest compositional run - every iconographic element correct: pipe sized correctly, both hats present, bottle centered, cards visible on table, tablecloth folded, two figures with downcast eyes, drapery anchor in background |
+| Edge quality | 3 | Consistent painterly edges, slight CFG-induced saturation and sharpening |
+
+**Qualitative Notes:**
+- Background warm reddish-brown landed ✅ - "warm reddish-brown wooden wall paneling" + "hanging dark drapery" + "warm browns and burnt sienna and ochre" successfully replaced Run 4's cool green/teal interior. Concrete material + object language worked
+- Drapery anchor visible on right side of frame - direct prompt win ✅
+- Pipe sized down successfully ✅ - "small white clay pipe" + "oversized pipe, large pipe" in negative corrected Run 4's comedic over-sizing
+- Faces softened from Run 4 backslide ✅ - restoring Run 3's face-specific language ("faces simplified into geometric planes" only) helped
+- Compositional iconography fully landed - every Cézanne object correct in placement and identification ✅
+- Bodies still fully 3D ❌ - "thick paint applied in flat slabs" + "bodies built from broad palette knife strokes" (material/process language) failed to override body-modeling prior. Right figure shows clear fabric folds and dimensional shoulders consistent with Runs 1-4
+- Broken color technique still not landing ❌ - "small visible square brushstrokes in distinct colors paint not blended together" produced no visible patch-mosaic effect. Surfaces remain gradient-shaded
+- Saturation higher than OG - tablecloth orange louder than Cézanne's muted ochre, wall reds slightly oversaturated. Likely CFG 2.0 effect compounded with warm-color prompt density
+- Cards on table, not in hands - consistent model limitation across all runs
+- Faces still individualized rather than planar mask-like - faces partially improved but ceiling not broken
+- **Verdict:** Strongest compositional run. Confirmed hard Flux limitations at CFG 2.0: body planarity and broken color technique cannot be prompted into.
 
 ---
 
@@ -256,9 +471,23 @@ Flux's training distribution for "violent clothed figures" is overwhelmingly pho
 
 The Murder results illustrates that every prompt iteration that increased subject specificity pulled the model further toward photorealism, while every iteration that increased medium specificity improved texture but lost compositional accuracy. The model cannot hold both simultaneously.
 
-*Results for The Card Players, Fruit Bowl, Glass and Apples, and The Forest to be added in subsequent sessions.*
+### The Card Players (Middle Period, 1892): Preliminary Results
 
+Where the Murder benchmark exposed Flux's photorealism bias for figurative violence, the Card Players benchmark exposes something sharper: Flux can replicate Cézanne's iconography but cannot replicate his technique.
 
+Across five runs, the model successfully converged on every object-level element of the painting — the two figures, the wine bottle centered between them, the ochre tablecloth with visible folds, the tall bowler hat, the wide-brimmed tan hat, the clay pipe, the warm reddish-brown tavern interior with hanging drapery. By Run 5, every iconographic element of Cézanne's composition was present and correctly placed.
+
+What the model could not do, across any of the five runs, was render the figures the way Cézanne rendered them. The bodies in every output are fully three-dimensional — fabric folds, rounded shoulders, atmospheric modeling — despite increasingly aggressive prompting toward planar reduction. Three separate prompt strategies were attempted: explicit geometric description ("flat geometric planes"), negative prompting ("no fabric folds, no dimensional shoulders"), and material/process language ("thick paint applied in flat slabs"). All three failed. The bodies remained 3D.
+
+The same pattern held for broken color, Cézanne's signature technique of placing small unblended patches of distinct color next to each other rather than blending them into gradients. Three runs with progressively concrete prompt language produced no visible patch-mosaic effect in any output. Flux's surfaces remained gradient-shaded throughout.
+
+The Card Players benchmark also produced one methodological discovery: Flux at CFG 1.0 (its default) underweights painterly technique prompts to the point of ignoring them entirely. Bumping CFG to 2.0 in Run 3 produced an immediate category-level shift in how the model engaged with technique language — faces moved from photorealistic to painterly, surface texture appeared for the first time across the entire canvas. The implication is that benchmarking Flux's painterly capability at default CFG underestimates the model's ceiling. Future runs across all periods should test at minimum CFG 1.0 and 2.0 to separate "model can't" from "model won't at default settings."
+
+The deeper finding is structural. Flux can replicate what a Cézanne painting *contains* but not how Cézanne *constructs* it. The model can dress an image up with Cézanne's iconography — the right objects, the right palette, the right composition — but cannot perform Cézanne's structural project, which is the planar reduction of three-dimensional form. That structural project is precisely what makes a Cézanne distinctly Cézanne rather than a generic 19th century genre painting. The benchmark is doing its job: it exposes a limitation that photo-based or generic creative benchmarks would never surface.
+
+*Results for Fruit Bowl, Glass and Apples and The Forest to be added in subsequent sessions.*
+
+---
 
 ## Methodology Notes
 
@@ -266,7 +495,8 @@ The Murder results illustrates that every prompt iteration that increased subjec
 - CLIP score possible but noisy for fine art (trained on web images, not paintings)
 - Cohen's Kappa used for inter-rater reliability with two raters (human + AI)
 - Resolution kept at 512x512 for speed; quality sufficient for rubric scoring
+- Seeds verified via PNG metadata (`strings <file>.png | grep '"seed"'`) rather than ComfyUI UI display, which shows the next-queued seed under `randomize` mode rather than the current seed
 
 ---
 
-*Generated with ComfyUI + Flux.1-dev Q4_K_S on M4 Mac, March 2026*
+*Generated with ComfyUI + Flux.1-dev Q4_K_S on M4 Mac, March 2026 - April 2026*
