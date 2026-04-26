@@ -43,7 +43,7 @@ The Middle period carries two paintings. Still life and figure painting require 
 
 **Model:** Flux.1-dev Q4_K_S (GGUF quantized)
 **Platform:** ComfyUI on M4 Mac, 24GB unified memory
-**Sampler:** Euler | **CFG:** 1.0 | **Steps:** 10 | **Resolution:** 512x512
+**Sampler:** Euler | **CFG:** 1.0 (baseline), 2.0 (Card Players Run 3+) | **Steps:** 10 | **Resolution:** 512x512
 
 Benchmarking runs use randomized seeds to capture variance. Low step count and resolution are intentional for iteration speed. More in depth renders at 1024x1024 and 20 steps in the future.
 ---
@@ -72,26 +72,25 @@ Across five runs with progressively refined prompts, the model consistently defa
 
  Flux's training distribution for clothed figurative violence is overwhelmingly photographic and cinematic. The model knows what a murder looks like. It does not know what Cézanne's decision to paint a murder crudely, emotionally, and against academic convention looks like.
 
+### The Card Players (Middle Period, 1892)
+
+Where the Murder benchmark exposed Flux's photorealism bias for figurative violence, the Card Players benchmark exposes something sharper: Flux can replicate Cézanne's iconography but cannot replicate his technique.
+
+Across five runs, the model successfully converged on every object-level element of the painting — the two figures, the wine bottle centered between them, the ochre tablecloth with visible folds, the tall bowler hat, the wide-brimmed tan hat, the clay pipe, the warm reddish-brown tavern interior with hanging drapery. By Run 5, every iconographic element of Cézanne's composition was present and correctly placed.
+
+What the model could not do, across any of the five runs, was render the figures the way Cézanne rendered them. The bodies in every output are fully three-dimensional, with fabric folds, rounded shoulders, and atmospheric modeling, despite increasingly aggressive prompting toward planar reduction. Three separate prompt strategies were attempted: explicit geometric description, negative prompting, and material/process language. All three failed. The bodies remained 3D. The same pattern held for broken color, Cézanne's signature technique of placing small unblended patches of distinct color next to each other rather than blending them into gradients. Three runs with progressively concrete prompt language produced no visible patch-mosaic effect in any output.
+
+The Card Players benchmark also produced one methodological discovery: Flux at CFG 1.0 (its default) underweights painterly technique prompts to the point of ignoring them entirely. Bumping CFG to 2.0 in Run 3 produced an immediate category-level shift in how the model engaged with technique language. Faces moved from photorealistic to painterly, and surface texture appeared for the first time across the entire canvas. The implication is that benchmarking Flux's painterly capability at default CFG underestimates the model's ceiling. Future runs across all periods should test at minimum CFG 1.0 and 2.0 to separate "model can't" from "model won't at default settings."
+
+The deeper finding is structural. Flux can replicate what a Cézanne painting *contains* but not how Cézanne *constructs* it. The model can dress an image up with Cézanne's iconography — the right objects, the right palette, the right composition — but cannot perform Cézanne's structural project, which is the planar reduction of three-dimensional form. That structural project is precisely what makes a Cézanne distinctly Cézanne rather than a generic 19th century genre painting.
+
 ## Status
 
 - [x] Early: The Murder (5 runs)
-- [ ] Middle: The Card Players
+- [x] Middle: The Card Players (5 runs)
 - [ ] Middle: Fruit Bowl, Glass and Apples
 - [ ] Late: The Forest
 
 ---
 
 ## Structure
-
-```
-cezanne-salon/
-├── README.md
-├── benchmark.md
-└── images/
-    ├── reference/
-    └── early/
-```
-
----
-
-*Flux.1-dev Q4_K_S. ComfyUI. M4 Mac. March 2026.*
