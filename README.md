@@ -94,13 +94,15 @@ The deeper finding is structural. Flux can replicate what a Cézanne painting *c
 ---
 
 ## Structure
+
+```
 cezanne-salon/
 ├── README.md
 ├── benchmark.md
 └── images/
-├── reference/
-├── early/
-└── middle/
----
+    ├── reference/
+    ├── early/
+    └── middle/
+```
 
 *Flux.1-dev Q4_K_S. ComfyUI. M4 Mac. March 2026 - April 2026.*
