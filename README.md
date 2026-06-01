@@ -62,7 +62,7 @@ Full scoring data and qualitative notes per run are in `benchmark.md`.
 
 ---
 
-## Preliminary Findings
+## Findings
 
 ### The Murder (Early Period, 1867)
 
@@ -70,7 +70,7 @@ Flux.1 can generate violent figurative scenes. It cannot generate Cézanne's vio
 
 Across five runs with progressively refined prompts, the model consistently defaulted to cinematic, photorealistic rendering. Run 1 produced a Neoclassical wrestling scene. Runs 2 through 4, with increasingly specific negative prompting against Baroque and photographic styles, produced what can best be described as a Victorian film still. Run 5, which led entirely with medium description rather than subject description, showed marginal improvement in painterly texture but did not break the underlying pattern.
 
- Flux's training distribution for clothed figurative violence is overwhelmingly photographic and cinematic. The model knows what a murder looks like. It does not know what Cézanne's decision to paint a murder crudely, emotionally, and against academic convention looks like.
+Flux's training distribution for clothed figurative violence is overwhelmingly photographic and cinematic. The model knows what a murder looks like. It does not know what Cézanne's decision to paint a murder crudely, emotionally, and against academic convention looks like.
 
 ### The Card Players (Middle Period, 1892)
 
@@ -83,7 +83,8 @@ What the model could not do, across any of the five runs, was render the figures
 The Card Players benchmark also produced one methodological discovery: Flux at CFG 1.0 (its default) underweights painterly technique prompts to the point of ignoring them entirely. Bumping CFG to 2.0 in Run 3 produced an immediate category-level shift in how the model engaged with technique language. Faces moved from photorealistic to painterly, and surface texture appeared for the first time across the entire canvas. The implication is that benchmarking Flux's painterly capability at default CFG underestimates the model's ceiling. Future runs across all periods should test at minimum CFG 1.0 and 2.0 to separate "model can't" from "model won't at default settings."
 
 The deeper finding is structural. Flux can replicate what a Cézanne painting *contains* but not how Cézanne *constructs* it. The model can dress an image up with Cézanne's iconography — the right objects, the right palette, the right composition — but cannot perform Cézanne's structural project, which is the planar reduction of three-dimensional form. That structural project is precisely what makes a Cézanne distinctly Cézanne rather than a generic 19th century genre painting.
-## Fruit Bowl, Glass and Apples (Middle Period, 1880)
+
+### Fruit Bowl, Glass and Apples (Middle Period, 1880)
 
 The Murder showed Flux defaulting to photorealism for figurative violence. The Card Players showed Flux replicating iconography but not technique. The still life sharpens the finding into something stranger: Flux defaults to competent realism and resists Cézanne's anti-realism by one of two routes, depending on how the prompt is phrased, and the prettier the output gets, the further from Cézanne it lands.
 
@@ -116,4 +117,4 @@ cezanne-salon/
     └── middle/
 ```
 
-*Flux.1-dev Q4_K_S. ComfyUI. M4 Mac. March 2026 - April 2026.*
+*Flux.1-dev Q4_K_S. ComfyUI. M4 Mac. March 2026 - May 2026.*
