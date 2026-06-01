@@ -83,12 +83,23 @@ What the model could not do, across any of the five runs, was render the figures
 The Card Players benchmark also produced one methodological discovery: Flux at CFG 1.0 (its default) underweights painterly technique prompts to the point of ignoring them entirely. Bumping CFG to 2.0 in Run 3 produced an immediate category-level shift in how the model engaged with technique language. Faces moved from photorealistic to painterly, and surface texture appeared for the first time across the entire canvas. The implication is that benchmarking Flux's painterly capability at default CFG underestimates the model's ceiling. Future runs across all periods should test at minimum CFG 1.0 and 2.0 to separate "model can't" from "model won't at default settings."
 
 The deeper finding is structural. Flux can replicate what a Cézanne painting *contains* but not how Cézanne *constructs* it. The model can dress an image up with Cézanne's iconography — the right objects, the right palette, the right composition — but cannot perform Cézanne's structural project, which is the planar reduction of three-dimensional form. That structural project is precisely what makes a Cézanne distinctly Cézanne rather than a generic 19th century genre painting.
+## Fruit Bowl, Glass and Apples (Middle Period, 1880)
+
+The Murder showed Flux defaulting to photorealism for figurative violence. The Card Players showed Flux replicating iconography but not technique. The still life sharpens the finding into something stranger: Flux defaults to competent realism and resists Cézanne's anti-realism by one of two routes, depending on how the prompt is phrased, and the prettier the output gets, the further from Cézanne it lands.
+
+Across five runs, object convergence was never the problem. Flux renders the compote, the apples, the grapes, the glass, and the draped cloth reliably and, with a rich enough prompt, beautifully. The problem is everything that makes the painting a Cézanne. The instructions that would push the image toward his tilted tabletop, flattened space, broken color, and dark contour outlines either collapse the generation or get silently ignored.
+
+Abstract or contradictory geometry — "planes flattened toward the picture surface," "the table seen from two angles at once" — drove the model into non-convergence, producing blank or near-blank canvases. A concrete, physically possible version of the same idea — "steeply tilted tabletop seen from a high angle" — rendered a clean image but with the instruction dropped, the table sitting in honest perspective regardless. Either way the still life lands on competent realism. The distortion that defines the painting cannot be obtained: abstract phrasing breaks the image, concrete phrasing is discarded.
+
+Pushed hard with stacked anti-realist and texture language ("crude, flat, distorted, unfinished, raw impasto, broken color patches"), the model abandoned the scene entirely and resolved to a field of dark green and ochre color blocks — Cézanne's surface qualities present, the still life gone. Stripped back to a clean descriptive prompt, the model produced the sharpest, most beautiful render of the session: smooth volumetric apples, a flawless rounded bowl in correct perspective, conventional lighting, and despite the prompt explicitly asking for impasto and broken color, a smooth blended surface with none of it. The first image is texture without a subject. The second is a subject without technique. There is no setting in between that yields a coherent scene and Cézanne's structure.
+
+Across all three paintings: Flux is fluent in representational competence and structurally incapable of Cézanne's anti-representational project. Flux can give you Cézanne's surface or a coherent scene, and the harder you push for the surface-plus-structural-distortion combination that is Cézanne, the more it has to throw away the scene to comply.
 
 ## Status
 
 - [x] Early: The Murder (5 runs)
 - [x] Middle: The Card Players (5 runs)
-- [ ] Middle: Fruit Bowl, Glass and Apples
+- [x] Middle: Fruit Bowl, Glass and Apples (5 runs)
 - [ ] Late: The Forest
 
 ---
