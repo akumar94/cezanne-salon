@@ -19,6 +19,7 @@ A painting encodes decisions, every brushstroke is intentional. A photo is just 
 | Middle (1875-1890) | The Card Players | 1892 |
 | Middle (1875-1890) | Fruit Bowl, Glass and Apples | 1880 |
 | Late (1890-1906) | The Forest | 1904 |
+
 ---
 
 ## Rubric (1–5 per dimension)
@@ -450,7 +451,136 @@ This is potentially the central finding of the Card Players benchmark: **Flux ca
 ---
 
 ### Painting 3: Fruit Bowl, Glass and Apples (Middle Period, 1879)
-*[TBD - runs to be added]*
+
+Note on session: early still-life attempts were discarded due to environment misconfiguration (an MPS CPU-fallback flag that degraded performance) and a series of prompt-driven non-convergence failures. The five runs below are the clean, scoreable series.
+
+All runs: **Steps:** 10 | **Resolution:** 512x512 | **CFG:** 2.0 | randomized seeds verified via PNG metadata.
+
+---
+
+#### Run 1
+**Seed:** 487149180013546
+**Steps:** 10 | **Resolution:** 512x512 | **CFG:** 2.0
+
+**Positive Prompt:**
+> oil painting by Paul Cézanne, 1880, a white footed compote holding apples and green grapes, a clear glass, loose red and green apples on a rumpled white cloth, pale bluish-grey wall, bold dark outlines around the fruit
+
+**Negative Prompt:**
+> *(empty)*
+
+| Dimension | Score | Notes |
+|-----------|-------------|-------|
+| Palette accuracy | 3 | Reasonable cool/earth tones, hazy. Pale blue-grey ground in correct family |
+| Brushwork visibility | 2 | Smooth, blended, no impasto or broken color |
+| Planarity | 1 | Fully 3D, rounded volumetric bowl and fruit, honest perspective |
+| Compositional structure | 4 | All objects present and correctly placed |
+| Edge quality | 2 | Soft/hazy throughout - blurriest of the five |
+
+**Qualitative Notes:**
+- Clean-realism baseline. Renders reliably; objects converge for free ✅
+- "Bold dark outlines around the fruit" did not produce visible contour outlines ❌
+- No movement toward Cézanne technique in any dimension; this is Flux's default still-life register ❌
+
+---
+
+#### Run 2
+**Seed:** 743952754383088
+**Steps:** 10 | **Resolution:** 512x512 | **CFG:** 2.0
+
+**Positive Prompt:**
+> oil painting by Paul Cézanne, 1880, a white footed compote holding apples and green grapes, a clear glass, loose red and green apples on a rumpled white cloth, pale bluish-grey wall, bold dark outlines around the fruit, steeply tilted tabletop seen from a high angle, the table surface tipped up toward the viewer
+
+**Negative Prompt:**
+> *(empty)*
+
+| Dimension | Score | Notes |
+|-----------|-------------|-------|
+| Palette accuracy | 3 | Consistent with Run 1 |
+| Brushwork visibility | 2 | Smooth, blended, no broken color |
+| Planarity | 1 | Table stayed flat/realist. Tilt instruction largely ignored |
+| Compositional structure | 4 | Objects correct; compote rim slightly more head-on than Run 1 |
+| Edge quality | 3 | Sharper than Run 1 |
+
+**Qualitative Notes:**
+- Single controlled change from Run 1: the tilt clause added, everything else held ✅
+- Image rendered cleanly but the tilt itself was dropped, table sits in normal perspective ❌ A marginal flatter-rim shift is visible but within plausible seed variance, not Cézanne's distortion
+- Confirms the pattern: concrete geometry instructions are ignored rather than collapsing the image ✅
+
+---
+
+#### Run 3
+**Seed:** 623841669068096
+**Steps:** 10 | **Resolution:** 512x512 | **CFG:** 2.0
+
+**Positive Prompt:**
+> A post-impressionist oil painting of Paul Cézanne's Still Life with Fruit Dish. On a dark wooden table draped with a heavy, rumpled white cloth, sits a large white ceramic pedestal fruit bowl filled with red and orange apples and deep green grapes. In the foreground on the crumpled cloth, a cluster of apples in vibrant shades of forest green, ochre yellow, and deep brick red are loosely piled next to a rustic knife with a wooden handle. To the right, a translucent glass chalice partially filled with water stands against a background wallpaper of muted blue, slate gray, and pale green leafy patterns. The style features heavy, deliberate, directional brushstrokes, prominent dark blue and black outline contours around the fruit, shifting geometric planes, thick oil impasto texture, and a matte canvas finish, 1879 classical fine art.
+
+**Negative Prompt:**
+> 3D render, photorealistic, smooth gradients, digital art, high-definition, glowing highlights, airbrushed, vibrant modern colors, neon, glossy finish, minimalist, sharp photographic focus.
+
+| Dimension | Score | Notes |
+|-----------|-------------|-------|
+| Palette accuracy | 4 | Richest, most period-plausible palette of the five - wallpaper, varied fruit, drapery |
+| Brushwork visibility | 2 | Still smooth/blended despite explicit impasto + contour requests |
+| Planarity | 1 | Fully 3D, rounded volume, honest perspective |
+| Compositional structure | 4 | All objects present, balanced, well placed |
+| Edge quality | 3 | Crisper than Runs 1-2 |
+
+**Qualitative Notes:**
+- Full natural-language description, technique-heavy. Multi-variable change vs. the controlled Runs 1/2, exploratory not controlled
+- Prettiest coherent render to this point ✅ but structurally the most academic: smooth modeled apples with realistic highlights, no broken color, no contour outlines, no flattening, no tilt, despite the prompt explicitly requesting all of them ❌
+- "Shifting geometric planes" had no visible effect ❌
+
+---
+
+#### Run 4
+**Seed:** 836659545732255
+**Steps:** 10 | **Resolution:** 512x512 | **CFG:** 2.0
+
+**Positive Prompt:**
+> A rough, unfinished post-impressionist palette knife oil painting by Paul Cézanne. Crude oil paint texture, chunky heavy visible brushstrokes, visible coarse canvas weave. Flat primitive geometric shapes, distorted perspective, clunky form. Thick dark structural outline sketch lines drawn around objects. Muddy, muted, earthy tones of ochre, slate blue, and dark green. Raw impasto, broken color patches, deliberate artistic imperfections, 1879 art.
+
+**Negative Prompt:**
+> smooth shading, soft gradients, clean lines, perfect symmetry, photorealism, digital illustration, vector art, airbrushed, polished finish, 3D render, glossy, neat tablecloth, sharp details, modern wallpaper
+
+| Dimension | Score | Notes |
+|-----------|-------------|-------|
+| Palette accuracy | 4 | Muddy slate-blue/ochre/dark-green earth tones landed exactly as prompted |
+| Brushwork visibility | 4 | Coarse canvas weave and impasto texture finally present - the only run where requested texture appeared |
+| Planarity | n/a | No representational forms to assess |
+| Compositional structure | 1 | No still life - abstraction, no bowl/fruit/table |
+| Edge quality | n/a | No object edges |
+
+**Qualitative Notes:**
+- The cliff edge. Stacking anti-realist + texture + structural-distortion language past a threshold drove the model to abandon the representational scene entirely. Output is a Rothko-like field of dark green and ochre color blocks ❌
+- Texture and palette survived ✅ the subject did not ❌ Same non-convergence failure mode as the discarded blank runs, but now carrying the requested surface qualities
+- Boundary case, not a standard scored still life. Logged for the finding it produces: this is the **only** run where broken-color/impasto texture actually rendered ✅ and it required sacrificing the entire subject to get it ❌
+
+---
+
+#### Run 5
+**Seed:** 670670667301540
+**Steps:** 10 | **Resolution:** 512x512 | **CFG:** 2.0
+
+**Positive Prompt:**
+> A post-impressionist oil painting of Paul Cézanne's Still Life with Fruit Dish, 1879. On a dark wooden table draped with a heavy rumpled white cloth sits a white ceramic pedestal fruit bowl filled with red and orange apples and green grapes. In the foreground on the cloth, a loose pile of apples in forest green, ochre yellow, and brick red sits beside a knife with a wooden handle. To the right, a translucent glass of water stands before a wallpaper of muted blue, slate gray, and pale green leafy patterns. Painted with thick visible impasto brushstrokes and patches of broken color, warm earthy muted palette, matte oil-on-canvas finish.
+
+**Negative Prompt:**
+> photograph, photorealistic, 3D render, smooth gradients, airbrushed, glossy finish, digital art, sharp photographic focus
+
+| Dimension | Score | Notes |
+|-----------|-------------|-------|
+| Palette accuracy | 4 | Rich, warm, period-plausible |
+| Brushwork visibility | 2 | Smooth and blended despite explicit impasto + broken-color request |
+| Planarity | 1 | Fully 3D, flawless rounded bowl, correct perspective |
+| Compositional structure | 5 | Strongest composition of the five - every object placed and balanced |
+| Edge quality | 4 | Sharpest, cleanest render of the session |
+
+**Qualitative Notes:**
+- Closer: Run 3's coherent base kept, only the "safe" texture words added; the structural-distortion language that collapsed Run 4 deliberately omitted; negative trimmed ✅
+- Most beautiful render of the session and the most un-Cézanne ✅ Reads as photographic-realist oil: smooth volumetric glossy-highlighted apples, flawless rounded bowl, a crisp modern (not period-appropriate) glass tumbler, conventional lighting, obedient drapery
+- Despite explicitly requesting impasto and broken color, the surface is smooth and blended, none present ❌ No flattening, no tilt, no contour outlines ❌
+- **Verdict:** The clean bookend to Run 4. Pull the poison out and you get gorgeous academic realism with zero Cézanne technique; push it in and the scene collapses. No middle setting yields a coherent scene and Cézanne's structure simultaneously.
 
 ---
 
@@ -461,7 +591,7 @@ This is potentially the central finding of the Card Players benchmark: **Flux ca
 
 ## Findings
 
-### The Murder (Early Period, 1867): Preliminary Results
+### The Murder (Early Period, 1867): Results
 
 Flux.1 can generate violent figurative scenes. It cannot generate Cezanne's violent figurative scenes.
 
@@ -471,7 +601,7 @@ Flux's training distribution for "violent clothed figures" is overwhelmingly pho
 
 The Murder results illustrates that every prompt iteration that increased subject specificity pulled the model further toward photorealism, while every iteration that increased medium specificity improved texture but lost compositional accuracy. The model cannot hold both simultaneously.
 
-### The Card Players (Middle Period, 1892): Preliminary Results
+### The Card Players (Middle Period, 1892): Results
 
 Where the Murder benchmark exposed Flux's photorealism bias for figurative violence, the Card Players benchmark exposes something sharper: Flux can replicate Cézanne's iconography but cannot replicate his technique.
 
@@ -485,7 +615,19 @@ The Card Players benchmark also produced one methodological discovery: Flux at C
 
 The deeper finding is structural. Flux can replicate what a Cézanne painting *contains* but not how Cézanne *constructs* it. The model can dress an image up with Cézanne's iconography — the right objects, the right palette, the right composition — but cannot perform Cézanne's structural project, which is the planar reduction of three-dimensional form. That structural project is precisely what makes a Cézanne distinctly Cézanne rather than a generic 19th century genre painting. The benchmark is doing its job: it exposes a limitation that photo-based or generic creative benchmarks would never surface.
 
-*Results for Fruit Bowl, Glass and Apples and The Forest to be added in subsequent sessions.*
+### Fruit Bowl, Glass and Apples (Middle Period, 1880): Results
+
+The still life produces the sharpest finding of the benchmark so far. Flux defaults to competent realism and resists Cézanne's anti-realism, and it does so by one of two routes depending on how the prompt is phrased. The clearer the result, the further it sits from Cézanne.
+
+Object convergence was never the constraint. Flux renders the compote, the apples, the grapes, the glass, and the draped cloth reliably, and with a dense enough prompt it renders them beautifully. What it cannot do is execute the instructions that make the painting a Cézanne: the tilted tabletop, the flattened space, the broken color, the dark contour outlines. Those instructions either collapse the generation or are silently dropped.
+
+The collapse and the drop are two forms of the same refusal. Abstract or contradictory geometry ("planes flattened toward the picture surface," "the table seen from two angles at once") drove the model into non-convergence and produced blank canvases. A concrete, physically possible version of the same instruction ("steeply tilted tabletop seen from a high angle") rendered cleanly but with the tilt discarded, the table sitting in honest perspective. Abstract phrasing breaks the image and concrete phrasing is ignored, but neither yields the distortion.
+
+The two extremes make the constraint explicit. Pushed hard with stacked anti-realist and texture language ("crude, flat, distorted, raw impasto, broken color patches"), the model abandoned the scene and resolved to a field of dark green and ochre color blocks: Cézanne's surface qualities present, the still life gone. Stripped back to a clean descriptive prompt, the model produced the most beautiful render of the session, smooth volumetric apples and a flawless rounded bowl in correct perspective, with none of the impasto or broken color the prompt explicitly requested. The first output is texture without a subject. The second is a subject without technique. No setting between them yields a coherent scene and Cézanne's structure at once.
+
+The result holds across all three paintings. Flux is fluent in representational competence and cannot perform Cézanne's anti-representational project. It can give you Cézanne's surface or a coherent scene, but the harder the prompt pushes for the combination of surface and structural distortion that defines the work, the more the model has to discard the scene to comply.
+
+*Results for The Forest to be added in a subsequent session.*
 
 ---
 
