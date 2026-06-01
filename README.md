@@ -46,6 +46,8 @@ The Middle period carries two paintings. Still life and figure painting require 
 **Sampler:** Euler | **CFG:** 1.0 (baseline), 2.0 (Card Players Run 3+) | **Steps:** 10 | **Resolution:** 512x512
 
 Benchmarking runs use randomized seeds to capture variance. Low step count and resolution are intentional for iteration speed. More in depth renders at 1024x1024 and 20 steps in the future.
+
+---
 ---
 
 ## Rubric
