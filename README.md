@@ -119,4 +119,4 @@ cezanne-salon/
     └── middle/
 ```
 
-*Flux.1-dev Q4_K_S. ComfyUI. M4 Mac. March 2026 - May 2026.*
+*Flux.1-dev Q4_K_S. ComfyUI. M4 Mac. March 2026 - June 2026.*
