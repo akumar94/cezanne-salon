@@ -585,7 +585,138 @@ All runs: **Steps:** 10 | **Resolution:** 512x512 | **CFG:** 2.0 | randomized se
 ---
 
 ### Painting 4: The Forest (Late Period, 1894)
-*[TBD - runs to be added]*
+
+All runs: **Steps:** 10 | **Resolution:** 512x512 | **CFG:** 2.0 | seeds verified via PNG metadata.
+
+Note on dating: sources vary on this canvas (WikiArt 1894; White House Historical Association c. 1890-1892; a related National Gallery of Canada forest c. 1902-1904). c. 1894 is used here; the attribution is approximate and the painting is unambiguously late-period regardless.
+
+Note on seed logging: Runs 1-2 share metadata seed 477746178264520 due to the documented `control_after_generate` off-by-one (see Methodology Note above); the two outputs are distinct renders, distinguished by filename. Runs 3-5 used manually assigned or randomized seeds, all verified via PNG metadata.
+
+---
+
+#### Run 1
+**Seed:** 477746178264520
+**Steps:** 10 | **Resolution:** 512x512 | **CFG:** 2.0
+
+**Positive Prompt:**
+> a forest interior, tall trees with twisting dark trunks, dense green canopy, dappled sunlight on grass, post-impressionist oil painting
+
+**Negative Prompt:**
+> photograph, photorealistic, 3d render, blurry
+
+| Dimension | Score | Notes |
+|-----------|-------------|-------|
+| Palette accuracy | 4 | Deep forest greens, warm yellow-green clearing, dark trunk browns - correct tonal family |
+| Brushwork visibility | 2 | Smooth tonal gradients in foliage, no broken color or constructive stroke |
+| Planarity | 1 | Textbook one-point perspective, central vanishing point, orderly receding rows - maximum imposed depth |
+| Compositional structure | 1 | Symmetric receding corridor, nothing like the reference's single asymmetric foreground tree |
+| Edge quality | 5 | Sharp, clean, fully scoreable, no collapse |
+
+**Qualitative Notes:**
+- Representational baseline. Given no depth language whatsoever, Flux manufactured aggressive academic perspective unprompted ❌
+- The anti-Forest: asked for a forest, the model built deep navigable space rather than a flattened picture-plane ❌
+- Useful precisely because it establishes the depth maximum runs 2-5 are measured against ✅
+
+---
+
+#### Run 2
+**Seed:** 477746178264520
+**Steps:** 10 | **Resolution:** 512x512 | **CFG:** 2.0
+
+**Positive Prompt:**
+> a forest, trees and foliage filling the whole frame, flattened shallow space, no deep distance, dense interwoven green canopy, post-impressionist oil painting
+
+**Negative Prompt:**
+> vanishing point, deep perspective, photograph, 3d render
+
+| Dimension | Score | Notes |
+|-----------|-------------|-------|
+| Palette accuracy | 4 | Moodier, deeper greens than Run 1, closer to a forest interior |
+| Brushwork visibility | 2 | Some leaf-texture stippling in canopy, still gradient not patch |
+| Planarity | 2 | Hard corridor gone, but depth re-imposed via atmospheric recession - bright central glow does the vanishing point's job |
+| Compositional structure | 1 | Symmetric framed corridor again, reference's asymmetric single trunk absent |
+| Edge quality | 5 | Clean, sharp, no collapse |
+
+**Qualitative Notes:**
+- Negative-prompting "vanishing point" worked locally but Flux rerouted depth through light and atmosphere instead ❌
+- Confirms the depth-pull is robust: forbid the mechanism and the model finds another way to build navigable space ❌
+
+---
+
+#### Run 3
+**Seed:** 30003
+**Steps:** 10 | **Resolution:** 512x512 | **CFG:** 2.0
+
+**Positive Prompt:**
+> a sunlit forest clearing in the late style of Paul Cézanne, a dark twisting tree trunk in the center foreground with snaking branches spreading across the canopy, dense green foliage, patches of pale blue and white sky through the leaves, bands of bright chartreuse sunlight and deep green shadow on a sloping forest floor, cool emerald and viridian greens with ocher and amber, post-impressionist oil painting
+
+**Negative Prompt:**
+> photograph, photorealistic, 3d render, deep perspective, vanishing point
+
+| Dimension | Score | Notes |
+|-----------|-------------|-------|
+| Palette accuracy | 5 | Excellent - the color specification landed in full, greens/chartreuse/shadow all correct |
+| Brushwork visibility | 2 | Smooth blended foliage, some leaf-dabbing, no constructive patches |
+| Planarity | 1 | Deepest space yet - added a distance vista, blue atmospheric mountains, a horizon |
+| Compositional structure | 2 | Central twisting trunk present and correct, but the open vista is the wrong painting |
+| Edge quality | 5 | Flawless, sharp, no artifacts |
+
+**Qualitative Notes:**
+- Tightened prompt with collapse-triggers removed to protect the render. It rendered, beautifully, and opened a window into deep landscape space ❌
+- Strip the structural language and Flux returns a gorgeous coherent representational forest scoring high on palette and render, low on the two metrics that test Cézanne ❌
+- Central trunk and palette landed cleanly ✅
+
+---
+
+#### Run 4
+**Seed:** 1104081531705831
+**Steps:** 10 | **Resolution:** 512x512 | **CFG:** 2.0
+
+**Positive Prompt:**
+> A post-impressionist landscape painting in the distinct late style of Paul Cézanne, depicting a sun-drenched sous-bois forest clearing. The composition is anchored by a prominent, dark, twisted tree trunk in the center-left foreground, its thick, snaking branches sprawling upward and outward across the upper canopy. Short, diagonal, parallel patches of impasto oil paint—the constructive brushstroke—build the forms of the grassy ground and dense green foliage. The color palette is restricted to cool emerald greens, deep viridian, earthy ocher, and rich amber, interspersed with stark patches of pale blue and white sky breaking through the upper leaves. The light is diffused yet luminous, creating sharp alternating bands of bright chartreuse sunlight and deep green shadows across a terraced, sloping forest floor. The scene features no atmospheric perspective, collapsing foreground and background into a flattened, heavily textured, mosaic-like geometric tapestry.
+
+**Negative Prompt:**
+> photograph, photorealistic, 3d render
+
+| Dimension | Score | Notes |
+|-----------|-------------|-------|
+| Palette accuracy | 4 | Vivid, a touch garish versus Run 3 but in family |
+| Brushwork visibility | 2 | Constructive-stroke request converted to flat cel-shaded cartoon color-blocking, not faceted patches |
+| Planarity | 1 | Blue distance mountains added for the third straight run, fully navigable 3D space |
+| Compositional structure | 2 | Trunk earns the point, distance vista is the wrong painting |
+| Edge quality | 5 | Sharp, clean, no collapse |
+
+**Qualitative Notes:**
+- No cliff. The full Cézanne machinery in one prompt did not collapse the image - the model cherry-picked the representational terms and silently discarded the anti-representational ones ❌
+- "No atmospheric perspective," "flattened," "mosaic-like geometric tapestry" all ignored; twisting trunk, chartreuse banding, palette, sky-through-canopy all rendered ❌
+- Converted "constructive brushstroke / impasto" into the nearest representational neighbor it has, flat cartoon blocking, having no real handle on broken color at 10 steps ❌
+- Sharper than a collapse: asked for the technique, the model refuses the technique and renders the representation regardless ❌
+
+---
+
+#### Run 5
+**Seed:** 829293896968287
+**Steps:** 10 | **Resolution:** 512x512 | **CFG:** 2.0
+
+**Positive Prompt:**
+> Paul Cézanne, sous-bois forest interior, late style. Tall slender tree trunks crowding the entire frame edge to edge, dense canopy filling the top, no clearing and no open sky, the whole surface packed with foliage. Flattened planes tilted toward the picture surface, dissolved depth. Built from short parallel diagonal brushstrokes and patches of thick impasto, constructive strokes and broken patches of unblended green, viridian, ocher and pale blue laid side by side. Dappled green light, cool shadow, oil on canvas.
+
+**Negative Prompt:**
+> clearing, open sky, distant mountains, horizon, vanishing point, deep perspective, photograph, 3d render
+
+| Dimension | Score | Notes |
+|-----------|-------------|-------|
+| Palette accuracy | 3 | Gone monochrome-green, lost the ocher/amber/blue range; path's orange the only break |
+| Brushwork visibility | 3 | Highest of the set - vertical canopy striations read as constructive-stroke-adjacent; lower third mushes |
+| Planarity | 2 | Top two-thirds genuinely flatten, but a dead-center vanishing corridor tanks it - depth re-imposed through a route the negative explicitly forbade |
+| Compositional structure | 2 | Densest, most all-over surface yet, but the symmetric corridor is the opposite of the reference's asymmetric single trunk |
+| Edge quality | 3 | Lower third mushes (impasto/broken-color language → blur at 10 steps, as documented), but reads as a painting |
+
+**Qualitative Notes:**
+- The closer. Composition foreclosing the depth opening (trunks edge to edge, no clearing, surface packed) plus every escape route forbidden by name in the negative ✅
+- Fifth straight depth re-imposition, this time through a forbidden route: denied clearing/sky/mountains/horizon, Flux built a central vanishing corridor instead ❌
+- Densest, flattest, most broken-color-adjacent texture of the set in the upper canvas ✅, fused with imposed depth below it ❌
+- **Verdict:** The Fruit Bowl finding on the Late painting: surface or scene, never both. The model produces the flattened picture-plane or the navigable space, then fuses them into contradiction rather than resolving to Cézanne's plane.
 
 ---
 
@@ -627,7 +758,15 @@ The two extremes make the constraint explicit. Pushed hard with stacked anti-rea
 
 The result holds across all three paintings. Flux is fluent in representational competence and cannot perform Cézanne's anti-representational project. It can give you Cézanne's surface or a coherent scene, but the harder the prompt pushes for the combination of surface and structural distortion that defines the work, the more the model has to discard the scene to comply.
 
-*Results for The Forest to be added in a subsequent session.*
+### The Forest (Late Period, c. 1894): Results
+
+The Forest was the maximum stress test, and it closes the benchmark by confirming the thesis on the one painting that should have made the thesis hardest to prove. Where the still life and the figures handed Flux a representational subject and asked it to abstract, The Forest hands it a subject that is already near-abstract: flattened planes, dissolved depth, foliage pressed to the picture surface. The open question was whether that head start would finally let the model land Cézanne's structure. It did not.
+
+Across five runs the model re-imposed deep navigable space every time, through five different routes. Run 1, given no depth language at all, manufactured textbook one-point perspective unprompted: a central vanishing point and orderly receding rows, the purest possible demonstration that depth is Flux's default reading of "forest." Run 2 negative-prompted the vanishing point and the model rerouted the same depth through atmospheric recession, a bright central glow doing the corridor's work. Run 3 stripped the collapse-triggering structural language to protect the render and got the most beautiful image of the session: a coherent representational forest that opened a window onto distant blue mountains, scoring high on palette and low on everything that tests Cézanne. Run 4 stacked the full art-historical description of his technique into one prompt and produced no collapse: the model cherry-picked the representational terms and silently discarded the anti-representational ones, converting the constructive brushstroke into flat cartoon color-blocking. Run 5 foreclosed the depth opening by composition, trunks crowding edge to edge with no clearing, and forbade every escape route by name in the negative; the model built a dead-center vanishing corridor anyway.
+
+Planarity never exceeded 2 out of 5 across any run. The headline metric of the Late period, the one quality the reference painting exists to test, could not be obtained under any prompt strategy: not the absence of depth language, not its negation, not its concrete art-historical description, not a composition built specifically to leave no room for recession. Run 5 is the cleanest statement of the limit, fusing both failure modes in a single frame: the upper canvas delivers the densest, flattest, most broken-color-adjacent surface of the entire benchmark, and the lower canvas drives a vanishing corridor straight through it. The model can paint the surface or the space and cannot resolve them into one plane.
+
+This is the Fruit Bowl finding arriving on the Late painting, and the symmetry closes the project. The still life showed that Flux gives you surface or scene but never both. The Forest shows the same split holds even when the subject itself is already flat, which means the constraint is not in the difficulty of the subject but in the model: Flux cannot be pushed off representation, whether you remove the structural language, pile it on, or build the composition to forbid the alternative. A benchmark built on photographs or generic prompts would register five competent forest paintings and call the task solved. Measured against what Cézanne was actually doing, the model never started.
 
 ---
 
