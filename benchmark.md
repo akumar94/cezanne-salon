@@ -18,7 +18,7 @@ A painting encodes decisions, every brushstroke is intentional. A photo is just 
 | Early (1859-1875) | The Murder | 1867 |
 | Middle (1875-1890) | The Card Players | 1892 |
 | Middle (1875-1890) | Fruit Bowl, Glass and Apples | 1880 |
-| Late (1890-1906) | The Forest | 1904 |
+| Late (1890-1906) | The Forest | c. 1894 |
 
 ---
 
