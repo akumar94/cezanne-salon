@@ -33,7 +33,7 @@ Cézanne's career moves across three philosophically distinct phases. His Early 
 | Early (1859-1875) | The Murder | 1867 | Dark romantic, violent, unambiguously Early |
 | Middle (1875-1890) | The Card Players | 1892 | Geometric figures, muted palette, peak Cézanne the theorist |
 | Middle (1875-1890) | Fruit Bowl, Glass and Apples | 1880 | Intentional geometric distortion, proto-Cubism in a still life |
-| Late (1890-1906) | The Forest | 1904 | Near-total abstraction, flattened planes, maximum stress test |
+| Late (1890-1906) | The Forest | c. 1894 | Near-total abstraction, flattened planes, maximum stress test |
 
 The Middle period carries two paintings. Still life and figure painting require different model competencies, and the Middle period is Cézanne's most theoretically rich phase.
 
@@ -98,25 +98,30 @@ Pushed hard with stacked anti-realist and texture language ("crude, flat, distor
 
 Across all three paintings: Flux is fluent in representational competence and structurally incapable of Cézanne's anti-representational project. Flux can give you Cézanne's surface or a coherent scene, and the harder you push for the surface-plus-structural-distortion combination that is Cézanne, the more it has to throw away the scene to comply.
 
+### The Forest (Late Period, c. 1894)
+
+The Forest was the maximum stress test and it closes the project by confirming the thesis on the painting that should have been hardest to prove. The subject is already near-abstract: flattened planes, dissolved depth, foliage pushed to the surface. If Flux could ever land Cézanne's structure, this was the painting where the subject itself did most of the work. It did not land it.
+
+Across five runs the model re-imposed deep navigable space every single time, through five different routes. Given no depth language, it produced textbook one-point perspective. Sent a negative prompt against the vanishing point, it rerouted depth through atmospheric glow. Handed a clean descriptive prompt, it opened a window onto distant blue mountains. Given the full art-historical description of Cézanne's technique in one prompt, it cherry-picked the representational terms and silently dropped the rest. Given a composition built to leave no room for recession, it drove a vanishing corridor through the center anyway. Planarity, the headline Late-period metric, never exceeded 2 out of 5.
+
+This is the Fruit Bowl finding arriving on the Late painting: Flux gives you Cézanne's surface or a coherent scene, never both. The Forest proves the split holds even when the subject is already flat, which locates the constraint in the model rather than the difficulty of the subject. Flux cannot be pushed off representation, whether you strip the structural language, pile it on, or compose the frame to forbid the alternative. A benchmark built on photographs would see five competent forests and call it solved. Measured against what Cézanne was actually doing, the model never started.
+
 ## Status
 
 - [x] Early: The Murder (5 runs)
 - [x] Middle: The Card Players (5 runs)
 - [x] Middle: Fruit Bowl, Glass and Apples (5 runs)
-- [ ] Late: The Forest
+- [x] Late: The Forest (5 runs)
+
+**Project complete.**
 
 ---
 
 ## Structure
 
-```
-cezanne-salon/
-├── README.md
-├── benchmark.md
-└── images/
-    ├── reference/
-    ├── early/
-    └── middle/
-```
+│   ├── reference/
+│   ├── early/
+│   ├── middle/
+│   └── late/
 
 *Flux.1-dev Q4_K_S. ComfyUI. M4 Mac. March 2026 - June 2026.*
