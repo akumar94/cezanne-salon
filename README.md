@@ -119,9 +119,14 @@ This is the Fruit Bowl finding arriving on the Late painting: Flux gives you Cé
 
 ## Structure
 
-│   ├── reference/
-│   ├── early/
-│   ├── middle/
-│   └── late/
-
+```
+cezanne-salon/
+├── README.md
+├── benchmark.md
+└── images/
+    ├── reference/
+    ├── early/
+    ├── middle/
+    └── late/
+```
 *Flux.1-dev Q4_K_S. ComfyUI. M4 Mac. March 2026 - June 2026.*
